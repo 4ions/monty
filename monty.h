@@ -47,8 +47,10 @@ typedef struct things_a
 {
 	stack_t *stack;
 	unsigned int num;
+	unsigned int line_num;
 	char *data;
 	char *data_num;
+	
 } thing_s;
 
 extern thing_s *things;
