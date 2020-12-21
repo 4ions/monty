@@ -48,13 +48,17 @@ int main(int argc, char *argv[])
 	char *buffer = NULL;
 	int line_count = 0;
 	void (*function)(stack_t **stack, unsigned int line_number);
-	(void)argc;
-
+	
+	if (argc < 2)
+	{
+		printf("USAGE: monty file\n");
+		exit(EXIT_FAILURE);
+	}
 	fp = fopen(argv[1], "r");
 	if (!fp)
 	{
-		perror("USAGE: monty file");
-		return (EXIT_FAILURE);
+		perror("Error: Can't open file <file>\n");
+		exit(EXIT_FAILURE);
 	}
 
 	save_things();
@@ -75,6 +79,7 @@ int main(int argc, char *argv[])
 	}
 
 	fclose(fp);
+	free(things);
 	return (0);
 }
 
