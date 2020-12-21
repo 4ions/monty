@@ -4,22 +4,17 @@
  *
  *Return: No return
  */
-void free_stack()
+void free_stack(void)
 {
-	stack_t *temp;
-	stack_t *head;
+	stack_t *tmp;
 
-	if (things->stack)
+	while (things.stack)
 	{
-		head = things->stack;
-
-		while (head)
-		{
-			temp = head->next;
-			free(head);
-			head = temp;
-		}
+		tmp = things.stack;
+		things.stack = things.stack->next;
+		free(tmp);
 	}
+
 }
 
 
@@ -30,18 +25,10 @@ void free_stack()
 
 void free_all(void)
 {
-	if (things != NULL)
-	{
-		
-		if (things->buffer != NULL)
-			free(things->buffer);
-		
-		if (things->data != NULL)
-			free(things->data);
 
-		if (things->data_num != NULL)
-			free(things->data_num);
-		free_stack();
-		free(things);
-	}
+	if (things.buffer != NULL)
+		free(things.buffer);
+
+	free_stack();
+	fclose(things.fp);
 }

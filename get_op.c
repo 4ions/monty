@@ -22,14 +22,14 @@ void(*get_function(void))(stack_t **stack, unsigned int line_number)
 
 	while (instructions[i].opcode)
 	{
-		if (strncmp(things->data, instructions[i].opcode, strlen(things->data)) == 0)
+		if (strncmp(things.data, instructions[i].opcode, strlen(things.data)) == 0)
 		{
 			return (instructions[i].f);
 		}
 		i++;
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n",
-		things->line_num, things->data);
+		things.line_num, things.data);
 	free_all();
 	exit(EXIT_FAILURE);
 }

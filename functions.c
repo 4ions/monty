@@ -73,14 +73,14 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	(void)line_number;
 
-	if (!are_numbers(things->data_num))
+	if (!are_numbers(things.data_num))
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", things->line_num);
+		fprintf(stderr, "L%u: usage: push integer\n", things.line_num);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
 
-	number = atoi(things->data_num);
+	number = atoi(things.data_num);
 
 	add_dnodeint(stack, number);
 
