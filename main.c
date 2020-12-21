@@ -51,7 +51,7 @@ int main(int argc, char *argv[])
 	size_t nbytes = 0;
 	char *buffer = NULL;
 	void (*function)(stack_t **stack, unsigned int line_number);
-	
+
 	if (argc < 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
@@ -70,14 +70,11 @@ int main(int argc, char *argv[])
 
 	while (check >= 0)
 	{
-
 		things->data = strtok(buffer, " \n\t");
-
 		things->data_num = strtok(NULL, " \n\t");
 		function = get_function();
 		function(&things->stack, things->num);
 		things->line_num++;
-
 		check = getline(&buffer, &nbytes, fp);
 	}
 
@@ -86,6 +83,6 @@ int main(int argc, char *argv[])
 	free(things);
 	/* free(things->data); */
 	/* free(things->data_num); */
-	exit (EXIT_SUCCESS);
+	exit(EXIT_SUCCESS);
 }
 
