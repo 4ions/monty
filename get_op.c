@@ -28,5 +28,6 @@ void(*get_function(void))(stack_t **stack, unsigned int line_number)
 		}
 		i++;
 	}
+	dprintf(2, "L%d: unknown instruction %s\n",things->line_num, things->data);
 	exit(EXIT_FAILURE);
 }

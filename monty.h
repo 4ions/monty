@@ -50,6 +50,7 @@ typedef struct things_a
 	unsigned int line_num;
 	char *data;
 	char *data_num;
+	char *buffer;
 	
 } thing_s;
 

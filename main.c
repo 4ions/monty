@@ -31,9 +31,39 @@ int save_things(void)
 	things->stack = NULL;
 	things->num = 0;
 	things->data_num = NULL;
+	things->buffer = NULL;
 
 	return (EXIT_SUCCESS);
 }
+
+/**
+ *
+ *
+ *
+ *
+ */
+
+int checking(void)
+{
+
+	void (*function)(stack_t **stack, unsigned int line_number);
+
+	
+	things->data = strtok(things->buffer, " ");
+	printf("%s", things->data);
+	if (things->data[0] != '\n')
+	{
+		things->data_num = strtok(NULL, " ");
+		printf("%s\n", things->data_num);
+		function = get_function();
+		function(&things->stack, things->num);	
+	}
+	else
+		return (1);
+	return (0);
+	
+}
+
 
 /**
  *main - start of the program
@@ -65,24 +95,24 @@ int main(int argc, char *argv[])
 	}
 
 	save_things();
-	check = getline(&buffer, &nbytes, fp);
-	buffer[strlen(buffer) - 1] = '\0';
+	check = getline(&things->buffer, &nbytes, fp);
+	things->buffer[strlen(things->buffer) - 1] = '\0';
 
 	while (check >= 0)
 	{
-		things->data = strtok(buffer, " \n\t");
-		things->data_num = strtok(NULL, " \n\t");
+		
+		/* checking(); */
+		things->data = strtok(things->buffer, "\n ");
+		things->data_num = strtok(NULL, "\n ");
 		function = get_function();
 		function(&things->stack, things->num);
 		things->line_num++;
-		check = getline(&buffer, &nbytes, fp);
+		check = getline(&things->buffer, &nbytes, fp);
 	}
 
 	fclose(fp);
 	free(buffer);
 	free(things);
-	/* free(things->data); */
-	/* free(things->data_num); */
 	exit(EXIT_SUCCESS);
 }
 
