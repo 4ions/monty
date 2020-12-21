@@ -18,7 +18,7 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	new_node = malloc(sizeof(stack_t));
 	if (!new_node)
 	{
-		dprintf(2, "Error: malloc failed\n");
+		fprintf(stderr, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 	new_node->n = n;
@@ -27,7 +27,7 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	if (*head)
 		(*head)->prev = new_node;
 	*head = new_node;
-	
+
 	return (new_node);
 }
 
@@ -74,7 +74,7 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	if (!are_numbers(things->data_num))
 	{
-		dprintf(2, "L%d: usage: push integer\n", things->line_num);
+		fprintf(stderr, "L%u: usage: push integer\n", things->line_num);
 		exit(EXIT_FAILURE);
 	}
 
