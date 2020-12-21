@@ -60,7 +60,6 @@ thing_s *things;
 void(*get_function(void))(stack_t **stack, unsigned int line_number);
 void _push(stack_t **stack, unsigned int line_number);
 int are_numbers(char *num);
-void _push(stack_t **stack, unsigned int line_number);
 void _pall(stack_t **stack, unsigned int line_number);
 
 #endif

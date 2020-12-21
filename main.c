@@ -16,7 +16,7 @@ int save_things(void)
 	things = malloc(sizeof(thing_s));
 	if (!things)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -24,7 +24,7 @@ int save_things(void)
 	things->data = malloc(sizeof(char *) * 3);
 	if (!things->data)
 	{
-		fprintf(stderr, "Error: malloc failed");
+		fprintf(2, "Error: malloc failed\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -35,32 +35,6 @@ int save_things(void)
 
 	return (EXIT_SUCCESS);
 }
-/**
- *checking - Check the main
- *Return: sdasdsa
- */
-
-int checking(void)
-{
-
-	void (*function)(stack_t **stack, unsigned int line_number);
-
-
-	things->data = strtok(things->buffer, " ");
-	printf("%s", things->data);
-	if (things->data[0] != '\n')
-	{
-		things->data_num = strtok(NULL, " ");
-		printf("%s\n", things->data_num);
-		function = get_function();
-		function(&things->stack, things->num);
-	}
-	else
-		return (1);
-	return (0);
-
-}
-
 
 /**
  *main - start of the program
@@ -81,13 +55,13 @@ int main(int argc, char *argv[])
 
 	if (argc < 2)
 	{
-		fprintf(stderr, "USAGE: monty file\n");
+		fprintf(2, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 	if (!fp)
 	{
-		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
+		fprintf(2, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 

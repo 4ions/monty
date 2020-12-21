@@ -2,19 +2,33 @@
 
 /**
  *add_dnodeint - add a new node at the beginning of a list
- *@stack: head of de dobly linked list
- *@new_node: new node
+ *@head: head of de dobly linked list
+ *@n: number to the new node
  *
  *Return: adress to the new node
  */
 
-void add_dnodeint(stack_t **stack, stack_t *new_node)
+stack_t *add_dnodeint(stack_t **head, const int n)
 {
+	stack_t *new_node;
+
+	if (!head)
+		return (NULL);
+
+	new_node = malloc(sizeof(stack_t));
+	if (!new_node)
+	{
+		dprintf(2, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	new_node->n = n;
 	new_node->prev = NULL;
-	new_node->next = *stack;
-	if (*stack)
-		(*stack)->prev = new_node;
-	*stack = new_node;
+	new_node->next = *head;
+	if (*head)
+		(*head)->prev = new_node;
+	*head = new_node;
+	
+	return (new_node);
 }
 
 
@@ -54,26 +68,19 @@ int are_numbers(char *num)
 void _push(stack_t **stack, unsigned int line_number)
 {
 
-	stack_t *new_node = NULL;
+	int number;
 
 	(void)line_number;
 
 	if (!are_numbers(things->data_num))
 	{
-		printf("L%d: usage: push integer\n", things->line_num);
+		dprintf(2, "L%d: usage: push integer\n", things->line_num);
 		exit(EXIT_FAILURE);
 	}
 
-	new_node = malloc(sizeof(stack_t));
-	if (!new_node)
-	{
-		fprintf(stderr, "Error: malloc failed");
-		exit(EXIT_FAILURE);
-	}
+	number = atoi(things->data_num);
 
-	new_node->n = atoi(things->data_num);
-
-	add_dnodeint(stack, new_node);
+	add_dnodeint(stack, number);
 
 }
 
