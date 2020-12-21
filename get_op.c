@@ -30,5 +30,6 @@ void(*get_function(void))(stack_t **stack, unsigned int line_number)
 	}
 	fprintf(stderr, "L%d: unknown instruction %s\n",
 		things->line_num, things->data);
+	free_all();
 	exit(EXIT_FAILURE);
 }
