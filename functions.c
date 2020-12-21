@@ -60,7 +60,7 @@ void _push(stack_t **stack, unsigned int line_number)
 
 	if (!are_numbers(things->data_num))
 	{
-		printf("L<line_number>: usage: push integer\n");
+		printf("L%d: usage: push integer\n", things->line_num);
 		exit(EXIT_FAILURE);
 	}
 

@@ -50,7 +50,6 @@ int main(int argc, char *argv[])
 	int check = 0;
 	size_t nbytes = 0;
 	char *buffer = NULL;
-	int line_count = 0;
 	void (*function)(stack_t **stack, unsigned int line_number);
 	
 	if (argc < 2)
@@ -61,7 +60,7 @@ int main(int argc, char *argv[])
 	fp = fopen(argv[1], "r");
 	if (!fp)
 	{
-		fprintf(stderr, "Error: Can't open file <file>\n");
+		fprintf(stderr, "Error: Can't open file %s\n", argv[1]);
 		exit(EXIT_FAILURE);
 	}
 
@@ -77,7 +76,7 @@ int main(int argc, char *argv[])
 		things->data_num = strtok(NULL, " \n\t");
 		function = get_function();
 		function(&things->stack, things->num);
-		line_count++;
+		things->line_num++;
 
 		check = getline(&buffer, &nbytes, fp);
 	}
