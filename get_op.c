@@ -27,9 +27,6 @@ void(*get_function(void))(stack_t **stack, unsigned int line_number)
 			return (instructions[i].f);
 		}
 		i++;
-
 	}
-
-	printf("Salio sin encontrar\n");
 	exit(EXIT_FAILURE);
 }
