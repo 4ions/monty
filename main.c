@@ -15,13 +15,17 @@ int save_things(void)
 
 	things = malloc(sizeof(thing_s));
 	if (!things)
-		return (1);
+	{
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
+	}
+
 
 	things->data = malloc(sizeof(char *) * 3);
 	if (!things->data)
 	{
-
-		return (1);
+		fprintf(stderr, "Error: malloc failed");
+		exit(EXIT_FAILURE);
 	}
 
 	things->stack = NULL;
@@ -51,13 +55,13 @@ int main(int argc, char *argv[])
 	
 	if (argc < 2)
 	{
-		printf("USAGE: monty file\n");
+		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
 	}
 	fp = fopen(argv[1], "r");
 	if (!fp)
 	{
-		perror("Error: Can't open file <file>\n");
+		fprintf(stderr, "Error: Can't open file <file>\n");
 		exit(EXIT_FAILURE);
 	}
 
@@ -79,7 +83,10 @@ int main(int argc, char *argv[])
 	}
 
 	fclose(fp);
+	free(buffer);
 	free(things);
-	return (0);
+	/* free(things->data); */
+	/* free(things->data_num); */
+	exit (EXIT_SUCCESS);
 }
 
