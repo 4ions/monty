@@ -35,12 +35,9 @@ int save_things(void)
 
 	return (EXIT_SUCCESS);
 }
-
 /**
- *
- *
- *
- *
+ *checking - Check the main
+ *Return: sdasdsa
  */
 
 int checking(void)
@@ -48,7 +45,7 @@ int checking(void)
 
 	void (*function)(stack_t **stack, unsigned int line_number);
 
-	
+
 	things->data = strtok(things->buffer, " ");
 	printf("%s", things->data);
 	if (things->data[0] != '\n')
@@ -56,12 +53,12 @@ int checking(void)
 		things->data_num = strtok(NULL, " ");
 		printf("%s\n", things->data_num);
 		function = get_function();
-		function(&things->stack, things->num);	
+		function(&things->stack, things->num);
 	}
 	else
 		return (1);
 	return (0);
-	
+
 }
 
 
@@ -100,14 +97,17 @@ int main(int argc, char *argv[])
 
 	while (check >= 0)
 	{
-		
+
 		/* checking(); */
-		things->data = strtok(things->buffer, "\n ");
-		things->data_num = strtok(NULL, "\n ");
-		function = get_function();
-		function(&things->stack, things->num);
-		things->line_num++;
+		if (!(things->buffer[0] == '\n') && !(things->buffer[0] == '#'))
+		{
+			things->data = strtok(things->buffer, "\n ");
+			things->data_num = strtok(NULL, "\n ");
+			function = get_function();
+			function(&things->stack, things->num);
+		}
 		check = getline(&things->buffer, &nbytes, fp);
+		things->line_num++;
 	}
 
 	fclose(fp);
