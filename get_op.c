@@ -10,17 +10,17 @@
  *
  */
 
-void(*get_function(void))(stack_t **stack, unsigned int line_number)
+void (*get_function(void))(stack_t **stack, unsigned int line_number)
 {
-
-	static instruction_t instructions[] = {
+	int  i = 0;
+	instruction_t instructions[] = {
 		{"push", _push},
 		{"pall", _pall},
 		{NULL, NULL}
 	};
-	int  i = 0;
 
-	while (instructions[i].opcode)
+
+	while (instructions[i].opcode && things.data)
 	{
 		if (strncmp(things.data, instructions[i].opcode, strlen(things.data)) == 0)
 		{

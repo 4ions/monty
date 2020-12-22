@@ -69,6 +69,7 @@ int are_numbers(char *num)
 void _push(stack_t **stack, unsigned int line_number)
 {
 
+
 	int number;
 
 	(void)line_number;

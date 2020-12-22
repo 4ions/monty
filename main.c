@@ -28,18 +28,15 @@ int save_things(void)
 
 int main(int argc, char *argv[])
 {
-
 	int check = 0;
 	FILE *fp;
 	size_t nbytes = 0;
 	void (*function)(stack_t **stack, unsigned int line_number);
 
-
 	if (argc != 2)
 	{
 		fprintf(stderr, "USAGE: monty file\n");
 		exit(EXIT_FAILURE);
-
 	}
 	fp = fopen(argv[1], "r");
 	if (!fp)
@@ -50,14 +47,14 @@ int main(int argc, char *argv[])
 	things.fp = fp;
 	save_things();
 	check = getline(&things.buffer, &nbytes, things.fp);
-	things.buffer[strlen(things.buffer) - 1] = '\0';
-	while (check >= 0)
+	while (check != -1)
 	{
 		things.line_num++;
-		if (!(things.buffer[0] == '\n') && !(things.buffer[0] == '#'))
+		if (!(things.buffer[0] == '\n') && !(things.buffer[0] == '#') &&
+		    things.buffer)
 		{
-			things.data = strtok(things.buffer, "\n ");
-			things.data_num = strtok(NULL, "\n ");
+			things.data = strtok(things.buffer, "\t\n ");
+			things.data_num = strtok(NULL, "\t\n ");
 			function = get_function();
 			function(&things.stack, things.num);
 		}
