@@ -21,6 +21,7 @@ void (*get_function(void))(stack_t **stack, unsigned int line_number)
 		{"swap", _swap},
 		{"add", _add},
 		{"nop", _nop},
+		{"sub", _sub},
 		{NULL, NULL}
 	};
 
