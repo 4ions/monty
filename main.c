@@ -44,19 +44,17 @@ int main(int argc, char *argv[])
 	}
 	things.fp = fp;
 	save_things();
-	/* check = getline(&things.buffer, &nbytes, things.fp); */
 	while ((check = getline(&things.buffer, &nbytes, things.fp)) != -1)
 	{
 		things.line_num++;
+		things.data = strtok(things.buffer, "\t\n ");
 		if (!(things.buffer[0] == '\n') && !(things.buffer[0] == '#') &&
-		    things.buffer)
+		    things.buffer && things.data)
 		{
-			things.data = strtok(things.buffer, "\t\n ");
 			things.data_num = strtok(NULL, "\t\n ");
 			function = get_function();
 			function(&things.stack, things.line_num);
 		}
-		/* check = getline(&things.buffer, &nbytes, things.fp); */
 	}
 	free_all();
 	exit(EXIT_SUCCESS);
