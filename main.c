@@ -46,8 +46,8 @@ int main(int argc, char *argv[])
 	}
 	things.fp = fp;
 	save_things();
-	check = getline(&things.buffer, &nbytes, things.fp);
-	while (check != -1)
+	/* check = getline(&things.buffer, &nbytes, things.fp); */
+	while ((check = getline(&things.buffer, &nbytes, things.fp)) != -1)
 	{
 		things.line_num++;
 		if (!(things.buffer[0] == '\n') && !(things.buffer[0] == '#') &&
@@ -58,7 +58,7 @@ int main(int argc, char *argv[])
 			function = get_function();
 			function(&things.stack, things.num);
 		}
-		check = getline(&things.buffer, &nbytes, things.fp);
+		/* check = getline(&things.buffer, &nbytes, things.fp); */
 	}
 	free_all();
 	exit(EXIT_SUCCESS);
