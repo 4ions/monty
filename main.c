@@ -49,7 +49,7 @@ int main(int argc, char *argv[])
 		things.line_num++;
 		things.data = strtok(things.buffer, "\t\n ");
 		if (!(things.buffer[0] == '\n') && !(things.buffer[0] == '#') &&
-		    things.buffer && things.data)
+		    things.buffer && things.data && !(things.data[0] == '#'))
 		{
 			things.data_num = strtok(NULL, "\t\n ");
 			function = get_function();
