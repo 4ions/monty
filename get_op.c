@@ -25,9 +25,9 @@ void (*get_function(void))(stack_t **stack, unsigned int line_number)
 		{"div", _div},
 		{"mul", _mul},
 		{"mod", _mod},
+		{"pchar", _pchar},
 		{NULL, NULL}
 	};
-
 
 	while (instructions[i].opcode && things.data)
 	{
