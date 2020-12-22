@@ -42,19 +42,16 @@ stack_t *add_dnodeint(stack_t **head, const int n)
  */
 int are_numbers(char *num)
 {
-	int i = 0;
-
 	if (!num)
 		return (0);
+
 	if (*num == '-')
 		num++;
-	for (i = 0; num[i] != '\0'; i++)
-	{
+
+	for (; *num; num++)
 		if (!isdigit(*num))
 			return (0);
-	}
 	return (1);
-
 }
 
 
@@ -69,14 +66,11 @@ int are_numbers(char *num)
 void _push(stack_t **stack, unsigned int line_number)
 {
 
-
 	int number;
 
-	(void)line_number;
-
-	if (!are_numbers(things.data_num))
+	if (things.data && are_numbers(things.data_num) == 0)
 	{
-		fprintf(stderr, "L%u: usage: push integer\n", things.line_num);
+		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 		free_all();
 		exit(EXIT_FAILURE);
 	}
