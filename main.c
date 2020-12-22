@@ -14,6 +14,7 @@ void save_things(void)
 	things.stack = NULL;
 	things.buffer = NULL;
 	things.line_num = 0;
+	things.value = 0;
 }
 
 /**

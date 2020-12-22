@@ -97,3 +97,35 @@ void _rotr(stack_t **stack, unsigned int line_number)
 		(*stack)->n = next;
 	}
 }
+
+/**
+ * _stack  LIFO
+ * @stack: the stack
+ * @line_number: current line number
+ *
+ * Return: void
+ */
+void _stack(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+
+	(void)line_number;
+
+	things.value = 0;
+}
+
+/**
+ * _queue -  FIFO
+ * @stack: the stack
+ * @line_number: Current line number
+ *
+ * Return: None
+ */
+void _queue(stack_t **stack, unsigned int line_number)
+{
+	(void)stack;
+
+	(void)line_number;
+
+	things.value = 1;
+}

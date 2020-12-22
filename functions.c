@@ -32,6 +32,47 @@ stack_t *add_dnodeint(stack_t **head, const int n)
 	return (new_node);
 }
 
+/**
+ * add_dnodeint_end - adds a new node at the end of list.
+ * @head: pointer to head of linked list
+ * @n: numeric value
+ *
+ * Return: the new node
+ */
+stack_t *add_dnodeint_end(stack_t **head, const int n)
+{
+	stack_t *new_node, *tmp = *head;
+
+	if (!head)
+		return (NULL);
+
+	new_node = malloc(sizeof(stack_t));
+
+	if (!new_node)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		free_all();
+		exit(EXIT_FAILURE);
+	}
+
+	new_node->n = n;
+
+	if (!(*head))
+	{
+		new_node->prev = NULL, new_node->next = *head;
+		*head = new_node;
+		return (new_node);
+	}
+
+	while (tmp->next)
+		tmp = tmp->next;
+
+	new_node->prev = tmp;
+	new_node->next = NULL;
+	tmp->next = new_node;
+
+	return (new_node);
+}
 
 /**
  *are_numbers - check if the user wrote a number
@@ -76,8 +117,11 @@ void _push(stack_t **stack, unsigned int line_number)
 	}
 
 	number = atoi(things.data_num);
-
-	add_dnodeint(stack, number);
+	
+	if (things.value == 0)
+		add_dnodeint(stack, number);
+	else
+		add_dnodeint_end(stack,number);
 
 }
 
