@@ -71,3 +71,28 @@ void _swap(stack_t **stack, unsigned int line_number)
 	(*stack)->n = (*stack)->next->n;
 	(*stack)->next->n = temp;
 }
+
+/**
+ * _add - adds the top two elements of the stack
+ * @stack: Pointer to head of stack)
+ * @line_number: Current line number
+ *
+ * Return: No Return
+ */
+void _add(stack_t **stack, unsigned int line_number)
+{
+	stack_t *coun_temp = *stack;
+	int count, sum;
+
+	while (coun_temp)
+		coun_temp = coun_temp->next, count++;
+	if (count < 2)
+	{
+		dprintf(2, "L%d: can't add, stack too short\n", line_number);
+		free_all();
+		exit(EXIT_FAILURE);
+	}
+	sum = (*stack)->n + (*stack)->next->n;
+	_pop(stack, line_number);
+	(*stack)->n = sum;
+}
