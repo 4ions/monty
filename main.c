@@ -9,13 +9,11 @@
  *Return: No return
  */
 
-int save_things(void)
+void save_things(void)
 {
 	things.stack = NULL;
 	things.buffer = NULL;
 	things.line_num = 0;
-
-	return (EXIT_SUCCESS);
 }
 
 /**
