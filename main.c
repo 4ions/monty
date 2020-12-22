@@ -54,7 +54,7 @@ int main(int argc, char *argv[])
 			things.data = strtok(things.buffer, "\t\n ");
 			things.data_num = strtok(NULL, "\t\n ");
 			function = get_function();
-			function(&things.stack, things.num);
+			function(&things.stack, things.line_num);
 		}
 		/* check = getline(&things.buffer, &nbytes, things.fp); */
 	}

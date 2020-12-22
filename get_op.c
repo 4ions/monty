@@ -16,6 +16,7 @@ void (*get_function(void))(stack_t **stack, unsigned int line_number)
 	instruction_t instructions[] = {
 		{"push", _push},
 		{"pall", _pall},
+		{"pint", _pint},
 		{NULL, NULL}
 	};
 

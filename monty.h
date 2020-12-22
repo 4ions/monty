@@ -73,5 +73,6 @@ void _push(stack_t **stack, unsigned int line_number);
 int are_numbers(char *num);
 void _pall(stack_t **stack, unsigned int line_number);
 void free_all(void);
+void _pint(stack_t **stack, unsigned int line_number);
 
 #endif
